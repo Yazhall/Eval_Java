@@ -2,29 +2,37 @@ package com.Neo_Yaz_Bank.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ * Représente un client de la banque.
+ * Contient les infos personnelles du client et la liste de ses comptes bancaires
+ */
 public class Client {
    private String firstname ;
    private String lastname;
    private String addresse;
    private LocalDate birthday;
+   private static int counter = 1;
+    /** Identifiant unique du client, généré automatiquement */
    private int ID;
+    /** Liste des comptes bancaires associés au client */
    private ArrayList<BankAccount> ListAccount;
 
-    public Client(String firstname, String lastname, String addresse, LocalDate birthday, int ID) {
+    public Client(String firstname, String lastname, String addresse, LocalDate birthday) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.addresse = addresse;
         this.birthday = birthday;
-        this.ID = ID;
+        this.ID = counter++;
         this.ListAccount = new ArrayList<>();
     }
 
     public ArrayList<BankAccount> getListAccount() {
+
         return ListAccount;
     }
 
     public void setListAccount(ArrayList<BankAccount> listAccount) {
+
         ListAccount = listAccount;
     }
 
@@ -67,5 +75,10 @@ public class Client {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+    @Override
+    public String toString(){
+        return "ID : " + ID +"\n Prénom : "+ firstname + "\n Noms: "+lastname+" \n Addresse: " + addresse+ "\n date d'anniversaire "+birthday;
+
     }
 }

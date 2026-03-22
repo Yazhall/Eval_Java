@@ -1,14 +1,25 @@
 package com.Neo_Yaz_Bank.model;
 
+/**
+ * Représente un compte bancaire associé à un client.
+ * Contient le numéro de compte généré automatiquement, le titulaire et le solde.
+ */
 public class BankAccount {
+    /** Numéro de compte unique, généré automatiquement */
     private int accountNumbers;
-    private String holder;
-    private double initialSold;
-
-    public BankAccount(int accountNumbers, String holder, int initialSold) {
-        this.accountNumbers = accountNumbers;
+    /** Client titulaire du compte */
+    private Client holder;
+    /** Solde initial par défaut pour tout nouveau compte */
+    private static final double initialSold = 0.0;
+    /** Compteur pour générer les numéros de compte uniques */
+    private static int counter = 1;
+    /** Solde actuel du compte */
+    private double solde ;
+    public BankAccount( Client holder) {
+        this.accountNumbers = counter++;
         this.holder = holder;
-        this.initialSold = initialSold;
+        this.solde = initialSold;
+
     }
 
     public int getAccountNumbers() {
@@ -19,19 +30,34 @@ public class BankAccount {
         this.accountNumbers = accountNumbers;
     }
 
-    public String getHolder() {
+    public Client getHolder() {
         return holder;
     }
 
-    public void setHolder(String holder) {
+    public void setHolder(Client holder) {
         this.holder = holder;
     }
 
-    public double getInitialSold() {
-        return initialSold;
+    public static int getCounter() {
+        return counter;
     }
 
-    public void setInitialSold(double initialSold) {
-        this.initialSold = initialSold;
+    public static void setCounter(int counter) {
+        BankAccount.counter = counter;
+    }
+
+    public double getSolde() {
+        return solde;
+    }
+
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
+
+
+
+    @Override
+    public String toString(){
+        return "Numéro de compte : " + accountNumbers + "\n Solde : " + solde + "euro";
     }
 }
